@@ -32,7 +32,7 @@ public class Cours {
      * @param heures
      * @param matière
      */
-    public Cours(int idcours, int heures, String matière) {
+    public Cours(int idcours, String matière, int heures) {
         this.idcours = idcours;
         this.heures = heures;
         this.matière = matière;
@@ -84,6 +84,11 @@ public class Cours {
      */
     public void setMatière(String matière) {
         this.matière = matière;
+    }
+    
+    @Override
+    public String toString(){
+        return "\n     Id cours : "+idcours+"\n     matière : "+matière+"\n     nombre d'heures : "+heures;
     }
 
 }
