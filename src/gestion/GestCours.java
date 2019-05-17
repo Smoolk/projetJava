@@ -117,6 +117,10 @@ public class GestCours {
             System.out.println("entrez la nouvelle matière du cours : ");
             String nouvmatiere = sc.nextLine();
             coursActuel.setMatière(nouvmatiere);
+            System.out.println("entrez le nombre d'heures du cours : ");
+            int nouvHeures = sc.nextInt();
+            sc.skip("\n");
+            coursActuel.setHeures(nouvHeures);
             coursDAO.update(coursActuel);
             System.out.println("cours actuel : " + coursActuel);
         } catch (SQLException e) {

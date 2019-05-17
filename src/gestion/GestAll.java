@@ -21,6 +21,7 @@ public class GestAll {
     Scanner sc = new Scanner(System.in);
     GestLocal gl = new GestLocal();
     GestCours gc = new GestCours();
+    GestFormateur gf = new GestFormateur();
     
 
     public GestAll() {
@@ -40,7 +41,7 @@ public class GestAll {
 
         int ch = 0;
         do {
-            System.out.println("\n##########################################################################\nMenu principal\n##########################################################################\n\n1.gérer les locaux \n2.gérer les formateurs\n3.gérer les cours\n4.gérer les sessions de cours\n5.fin\n");
+            System.out.println("\n##########################################################################\nMenu principal\n##########################################################################\n\n1.gérer les locaux \n2.gérer les formateurs\n3.gérer les cours\n4.fin\n");
             System.out.print("choix :");
             ch = sc.nextInt();
             sc.skip("\n");
@@ -50,18 +51,18 @@ public class GestAll {
                     gl.gestion();
                     break;
                 case 2:
-                    System.out.println("\npas encore implémenté");
-                    //recherche();
+                    System.out.println("\n");
+                    gf.gestion();
                     break;
                 case 3:
                     System.out.println("\n");
                     gc.gestion();
                     break;
-                case 4:
+                /*case 4:
                     System.out.println("\npas encore implémenté");
                     //sup();
-                    break;
-                case 5:
+                    break;*/
+                case 4:
                     System.out.println("\n");
                     System.out.println("bye");
                     break;
@@ -69,7 +70,7 @@ public class GestAll {
                     System.out.println("\nchoix incorrect");
             }
 
-        } while (ch != 5);
+        } while (ch != 4);
         DBConnection.closeConnection();
     }
 

@@ -29,12 +29,12 @@ public class Formateur {
     /**
      *
      */
-    protected String prénom;
+    protected String prenom;
 
     /**
      *
      */
-    protected String numéro;
+    protected String numero;
 
     /**
      *
@@ -44,7 +44,7 @@ public class Formateur {
     /**
      *
      */
-    protected String localité;
+    protected String localite;
 
     /**
      *
@@ -61,21 +61,21 @@ public class Formateur {
      * @param idform
      * @param matricule
      * @param nom
-     * @param prénom
-     * @param numéro
+     * @param prenom
+     * @param numero
      * @param rue
-     * @param localité
+     * @param localite
      * @param cp
      * @param tel
      */
-    public Formateur(int idform, String matricule, String nom, String prénom, String numéro, String rue, String localité, int cp, String tel) {
+    public Formateur(int idform, String matricule, String nom, String prenom, String numero, String rue, String localite, int cp, String tel) {
         this.idform = idform;
         this.matricule = matricule;
         this.nom = nom;
-        this.prénom = prénom;
-        this.numéro = numéro;
+        this.prenom = prenom;
+        this.numero = numero;
         this.rue = rue;
-        this.localité = localité;
+        this.localite = localite;
         this.cp = cp;
         this.tel = tel;
     }
@@ -108,16 +108,16 @@ public class Formateur {
      *
      * @return
      */
-    public String getPrénom() {
-        return prénom;
+    public String getPrenom() {
+        return prenom;
     }
 
     /**
      *
      * @return
      */
-    public String getNuméro() {
-        return numéro;
+    public String getNumero() {
+        return numero;
     }
 
     /**
@@ -132,8 +132,8 @@ public class Formateur {
      *
      * @return
      */
-    public String getLocalité() {
-        return localité;
+    public String getLocalite() {
+        return localite;
     }
 
     /**
@@ -178,18 +178,18 @@ public class Formateur {
 
     /**
      *
-     * @param prénom
+     * @param prenom
      */
-    public void setPrénom(String prénom) {
-        this.prénom = prénom;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     /**
      *
-     * @param numéro
+     * @param numero
      */
-    public void setNuméro(String numéro) {
-        this.numéro = numéro;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     /**
@@ -202,10 +202,10 @@ public class Formateur {
 
     /**
      *
-     * @param localité
+     * @param localite
      */
-    public void setLocalité(String localité) {
-        this.localité = localité;
+    public void setLocalite(String localite) {
+        this.localite = localite;
     }
 
     /**
@@ -224,5 +224,9 @@ public class Formateur {
         this.tel = tel;
     }
     
+    @Override
+    public String toString(){
+        return "\n     Id formateur : "+idform+"\n     Matricule : "+matricule+"\n     Nom : "+nom+"\n     Prénom : "+prenom+"\n     Numéro de maison : "+numero+"\n     Rue : "+rue+"\n     Localité : "+localite+"\n     Code postal : "+cp+"\n     Téléphone : "+tel;
+    }
         
 }

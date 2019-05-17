@@ -120,6 +120,13 @@ public class GestLocal {
             System.out.println("entrez le nouveau sigle du local : ");
             String nouvsigle = sc.nextLine();
             locActuel.setSigle(nouvsigle);
+            System.out.println("entrez le nombre de places disponibles : ");
+            int nouvplaces = sc.nextInt();
+            sc.skip("\n");
+            locActuel.setPlaces(nouvplaces);
+            System.out.println("entrez une courte description du local : ");
+            String nouvdescr = sc.nextLine();
+            locActuel.setDescription(nouvdescr);
             localDAO.update(locActuel);
             System.out.println("local actuel : " + locActuel);
         } catch (SQLException e) {
