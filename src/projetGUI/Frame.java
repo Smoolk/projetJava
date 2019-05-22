@@ -5,6 +5,14 @@
  */
 package projetGUI;
 
+import classes.DAO.CoursDAO;
+import classes.DAO.FormateurDAO;
+import classes.DAO.LocalDAO;
+import java.awt.CardLayout;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+import myconnections.DBConnection;
+
 /**
  *
  * @author jeanl
@@ -14,9 +22,30 @@ public class Frame extends javax.swing.JFrame {
     /**
      * Creates new form frame
      */
-    public static Frame f = new Frame();
+    CardLayout cardl;
     public Frame() {
         initComponents();
+        cardl=(CardLayout)this.getContentPane().getLayout();
+        Connection dbConnect = DBConnection.getConnection();
+        if (dbConnect == null) {
+            System.out.println("connection invalide");
+            JOptionPane.showMessageDialog(this,"connexion invalide","ERREUR",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        LocalDAO localDAO = new LocalDAO();
+        localDAO.setConnection(dbConnect);
+        CoursDAO coursDAO = new CoursDAO();
+        coursDAO.setConnection(dbConnect);
+        FormateurDAO formateurDAO = new FormateurDAO();
+        formateurDAO.setConnection(dbConnect);
+        /*crea_local2.setLocalDAO(localDAO);
+        recherche_local_descri2.setLocalDAO(localDAO);
+        recherche_local_id2.setLocalDAO(localDAO);
+        affich_loc1.setLocalDAO(localDAO);
+        affich_loc1.setLocationDAO(locationDAO);
+        crea_loc1.setLocationDAO(locationDAO);
+        gestion_location1.setLocationDAO(locationDAO);*/
+        
     }
 
     /**
@@ -32,27 +61,22 @@ public class Frame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu10 = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
 
         jMenu2.setText("jMenu2");
 
         jMenu3.setText("jMenu3");
+
+        jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -77,42 +101,14 @@ public class Frame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Admin");
-
-        jMenuItem4.setText("Connexion");
-        jMenu5.add(jMenuItem4);
-
-        jMenuItem5.setText("Déconnexion");
-        jMenu5.add(jMenuItem5);
-
+        jMenu5.setText("Cours");
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("Recherche");
+        jMenu7.setText("Locaux");
+        jMenuBar1.add(jMenu7);
 
-        jMenuItem6.setText("Recherche de cours");
-        jMenu6.add(jMenuItem6);
-
-        jMenuItem7.setText("Recherche de local");
-        jMenu6.add(jMenuItem7);
-
-        jMenuItem8.setText("Recherche de formateur");
-        jMenu6.add(jMenuItem8);
-
-        jMenuBar1.add(jMenu6);
-
-        jMenu10.setText("Modifier");
-        jMenu10.setToolTipText("");
-
-        jMenuItem10.setText("Cours");
-        jMenu10.add(jMenuItem10);
-
-        jMenuItem9.setText("Locaux");
-        jMenu10.add(jMenuItem9);
-
-        jMenuItem11.setText("Formateurs");
-        jMenu10.add(jMenuItem11);
-
-        jMenuBar1.add(jMenu10);
+        jMenu8.setText("Formateurs");
+        jMenuBar1.add(jMenu8);
 
         setJMenuBar(jMenuBar1);
 
@@ -130,17 +126,16 @@ public class Frame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        f.setContentPane(new MainMenu());
-        f.repaint();
-        f.revalidate();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:f.revalidate();
+        setTitle("Menu principal");
+        cardl.show(this.getContentPane(), "MainMenu");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,35 +168,23 @@ public class Frame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                f.setVisible(true);
-                f.setLocationRelativeTo(null);
-                f.setSize(460,530);
-                f.setContentPane(new MainMenu());
-                f.repaint();
-                f.revalidate();
+                new Frame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu jPopupMenu1;
     // End of variables declaration//GEN-END:variables
 }
