@@ -13,13 +13,13 @@ import classes.metiers.Local;
  *
  * @author jeanl
  */
-public class Local extends javax.swing.JPanel {
+public class LocalGUI extends javax.swing.JPanel {
 
     /**
-     * Creates new form Local
+     * Creates new form LocalGUI
      */
     LocalDAO localDAO = null;
-    public Local() {
+    public LocalGUI() {
         initComponents();
     }
 
@@ -49,16 +49,11 @@ public class Local extends javax.swing.JPanel {
         jLabel3.setText("description du local");
 
         textIdLocal.setEditable(false);
-        textIdLocal.setText("jTextField1");
         textIdLocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textIdLocalActionPerformed(evt);
             }
         });
-
-        textNomLocal.setText("jTextField1");
-
-        textDescLocal.setText("jTextField1");
 
         jButton1.setText("Créer local");
 

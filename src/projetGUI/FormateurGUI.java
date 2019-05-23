@@ -12,13 +12,13 @@ import classes.metiers.Formateur;
  *
  * @author jeanl
  */
-public class Formateur extends javax.swing.JPanel {
+public class FormateurGUI extends javax.swing.JPanel {
 
     /**
-     * Creates new form Formateur
+     * Creates new form FormateurGUI
      */
     FormateurDAO formateurDAO=null;
-    public Formateur() {
+    public FormateurGUI() {
         initComponents();
     }
     
@@ -57,17 +57,11 @@ public class Formateur extends javax.swing.JPanel {
 
         jLabel3.setText("Téléphone");
 
-        textLocalite.setEditable(false);
-        textLocalite.setText("jTextField1");
         textLocalite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textLocaliteActionPerformed(evt);
             }
         });
-
-        textCP.setText("jTextField1");
-
-        textTel.setText("jTextField1");
 
         jButton1.setText("Créer local");
 
@@ -89,29 +83,20 @@ public class Formateur extends javax.swing.JPanel {
 
         jLabel7.setText("Rue + numéro");
 
-        textNomFrom.setEditable(false);
-        textNomFrom.setText("jTextField1");
         textNomFrom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textNomFromActionPerformed(evt);
             }
         });
 
-        textPrenomForm.setText("jTextField1");
-
-        textRueForm.setText("jTextField1");
-
         jLabel8.setText("Id du formateur");
 
         textIdFrom.setEditable(false);
-        textIdFrom.setText("jTextField1");
         textIdFrom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textIdFromActionPerformed(evt);
             }
         });
-
-        textNumForm.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -157,7 +142,7 @@ public class Formateur extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(textRueForm, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textNumForm, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))))
+                                .addComponent(textNumForm)))))
                 .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(

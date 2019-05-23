@@ -14,13 +14,13 @@ import classes.metiers.Cours;
  * @author jeanl
  */
 
-public class Cours extends javax.swing.JPanel {
+public class CoursGUI extends javax.swing.JPanel {
 
     /**
      * Creates new form rechCours
      */
     CoursDAO coursDAO = null;
-    public Cours() {
+    public CoursGUI() {
         initComponents();
     }
     
@@ -55,16 +55,11 @@ public class Cours extends javax.swing.JPanel {
         jLabel3.setText("nombre d'heures");
 
         textIdCours.setEditable(false);
-        textIdCours.setText("jTextField1");
         textIdCours.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textIdCoursActionPerformed(evt);
             }
         });
-
-        textNomCours.setText("jTextField1");
-
-        textNombreHeures.setText("jTextField1");
 
         jButton1.setText("Créer cours");
 

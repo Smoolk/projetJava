@@ -26,6 +26,7 @@ public class Frame extends javax.swing.JFrame {
     public Frame() {
         initComponents();
         cardl=(CardLayout)this.getContentPane().getLayout();
+        cardl.show(this.getContentPane(), "card2");
         Connection dbConnect = DBConnection.getConnection();
         if (dbConnect == null) {
             System.out.println("connection invalide");
@@ -38,13 +39,13 @@ public class Frame extends javax.swing.JFrame {
         coursDAO.setConnection(dbConnect);
         FormateurDAO formateurDAO = new FormateurDAO();
         formateurDAO.setConnection(dbConnect);
-        /*crea_local2.setLocalDAO(localDAO);
-        recherche_local_descri2.setLocalDAO(localDAO);
-        recherche_local_id2.setLocalDAO(localDAO);
-        affich_loc1.setLocalDAO(localDAO);
-        affich_loc1.setLocationDAO(locationDAO);
-        crea_loc1.setLocationDAO(locationDAO);
-        gestion_location1.setLocationDAO(locationDAO);*/
+        localGUI1.setLocalDAO(localDAO);
+        rechLocalGUI1.setLocalDAO(localDAO);
+        //recherche_local_id2.setLocalDAO(localDAO);
+        //affich_loc1.setLocalDAO(localDAO);
+        //affich_loc1.setLocationDAO(locationDAO);
+        coursGUI1.setCoursDAO(coursDAO);
+        gesLocal1.setLocalDAO(localDAO);
         
     }
 
@@ -62,13 +63,27 @@ public class Frame extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        coursGUI1 = new projetGUI.CoursGUI();
+        formateurGUI1 = new projetGUI.FormateurGUI();
+        localGUI1 = new projetGUI.LocalGUI();
+        rechLocalGUI1 = new projetGUI.RechLocalGUI();
+        gesLocal1 = new projetGUI.GesLocal();
+        mainMenu2 = new projetGUI.MainMenu();
+        gesLocal2 = new projetGUI.GesLocal();
+        gesCours1 = new projetGUI.GesCours();
+        gesForm1 = new projetGUI.GesForm();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
+        buttHome = new javax.swing.JMenuItem();
+        buttQuit = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        JMenu85 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -80,62 +95,130 @@ public class Frame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setLayout(new java.awt.CardLayout());
+        getContentPane().add(coursGUI1, "card3");
+        getContentPane().add(formateurGUI1, "card4");
+        getContentPane().add(localGUI1, "card5");
+        getContentPane().add(rechLocalGUI1, "card6");
+        getContentPane().add(gesLocal1, "card7");
+        getContentPane().add(mainMenu2, "card2");
+        getContentPane().add(gesLocal2, "card12");
+        getContentPane().add(gesCours1, "card9");
+        getContentPane().add(gesForm1, "card10");
 
         jMenu4.setText("Menu");
 
-        jMenuItem1.setText("Home");
+        buttHome.setText("Home");
+        buttHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttHomeActionPerformed(evt);
+            }
+        });
+        jMenu4.add(buttHome);
+
+        buttQuit.setText("Quitter");
+        buttQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttQuitActionPerformed(evt);
+            }
+        });
+        jMenu4.add(buttQuit);
+
+        jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Accès");
+
+        jMenuItem1.setText("Cours");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem1);
+        jMenu5.add(jMenuItem1);
 
-        jMenuItem2.setText("Quitter");
+        jMenuItem2.setText("Local");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem2);
+        jMenu5.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu4);
+        jMenuItem4.setText("Formateur");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem4);
 
-        jMenu5.setText("Cours");
         jMenuBar1.add(jMenu5);
 
-        jMenu7.setText("Locaux");
-        jMenuBar1.add(jMenu7);
+        JMenu85.setText("Gestion");
+        JMenu85.setActionCommand("Gestion");
 
-        jMenu8.setText("Formateurs");
-        jMenuBar1.add(jMenu8);
+        jMenuItem5.setText("Cours");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        JMenu85.add(jMenuItem5);
+
+        jMenuItem6.setText("Local");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        JMenu85.add(jMenuItem6);
+
+        jMenuItem7.setText("Formateur");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        JMenu85.add(jMenuItem7);
+
+        jMenuBar1.add(JMenu85);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 663, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 437, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+    private void buttQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttQuitActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_buttQuitActionPerformed
+
+    private void buttHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttHomeActionPerformed
+        cardl.show(this.getContentPane(), "card2");
+    }//GEN-LAST:event_buttHomeActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        cardl.show(this.getContentPane(), "card4");
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:f.revalidate();
-        setTitle("Menu principal");
-        cardl.show(this.getContentPane(), "MainMenu");
+        cardl.show(this.getContentPane(), "card3");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        cardl.show(this.getContentPane(), "card5");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        cardl.show(this.getContentPane(), "card9");
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        cardl.show(this.getContentPane(), "card12");
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        cardl.show(this.getContentPane(), "card10");
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,17 +257,31 @@ public class Frame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu JMenu85;
+    private javax.swing.JMenuItem buttHome;
+    private javax.swing.JMenuItem buttQuit;
+    private projetGUI.CoursGUI coursGUI1;
+    private projetGUI.FormateurGUI formateurGUI1;
+    private projetGUI.GesCours gesCours1;
+    private projetGUI.GesForm gesForm1;
+    private projetGUI.GesLocal gesLocal1;
+    private projetGUI.GesLocal gesLocal2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private projetGUI.LocalGUI localGUI1;
+    private projetGUI.MainMenu mainMenu2;
+    private projetGUI.RechLocalGUI rechLocalGUI1;
     // End of variables declaration//GEN-END:variables
 }

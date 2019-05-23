@@ -66,7 +66,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="textRueForm" min="-2" pref="121" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="textNumForm" pref="0" max="32767" attributes="0"/>
+                              <Component id="textNumForm" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -137,23 +137,13 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textLocalite">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textLocaliteActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textCP">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textTel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
@@ -205,23 +195,13 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textNomFrom">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textNomFromActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textPrenomForm">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textRueForm">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
@@ -231,16 +211,12 @@
     <Component class="javax.swing.JTextField" name="textIdFrom">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textIdFromActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textNumForm">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>
