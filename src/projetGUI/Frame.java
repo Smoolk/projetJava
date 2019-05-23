@@ -40,14 +40,13 @@ public class Frame extends javax.swing.JFrame {
         FormateurDAO formateurDAO = new FormateurDAO();
         formateurDAO.setConnection(dbConnect);
         localGUI1.setLocalDAO(localDAO);
-        rechLocalGUI1.setLocalDAO(localDAO);
         affLocal1.setLocalDAO(localDAO);
         affCours1.setCoursDAO(coursDAO);
         affForm2.setFormateurDAO(formateurDAO);
         //affich_loc1.setLocalDAO(localDAO);
         //affich_loc1.setLocationDAO(locationDAO);
         coursGUI1.setCoursDAO(coursDAO);
-        gesLocal1.setLocalDAO(localDAO);
+        formateurGUI1.setFormateurDAO(formateurDAO);
         
     }
 
@@ -68,12 +67,7 @@ public class Frame extends javax.swing.JFrame {
         coursGUI1 = new projetGUI.CoursGUI();
         formateurGUI1 = new projetGUI.FormateurGUI();
         localGUI1 = new projetGUI.LocalGUI();
-        rechLocalGUI1 = new projetGUI.RechLocalGUI();
-        gesLocal1 = new projetGUI.GesLocal();
         mainMenu2 = new projetGUI.MainMenu();
-        gesLocal2 = new projetGUI.GesLocal();
-        gesCours1 = new projetGUI.GesCours();
-        gesForm1 = new projetGUI.GesForm();
         affLocal1 = new projetGUI.AffLocal();
         affCours1 = new projetGUI.AffCours();
         affForm2 = new projetGUI.AffForm();
@@ -89,10 +83,6 @@ public class Frame extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        JMenu85 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -108,12 +98,7 @@ public class Frame extends javax.swing.JFrame {
         getContentPane().add(coursGUI1, "card3");
         getContentPane().add(formateurGUI1, "card4");
         getContentPane().add(localGUI1, "card5");
-        getContentPane().add(rechLocalGUI1, "card6");
-        getContentPane().add(gesLocal1, "card7");
         getContentPane().add(mainMenu2, "card2");
-        getContentPane().add(gesLocal2, "card12");
-        getContentPane().add(gesCours1, "card9");
-        getContentPane().add(gesForm1, "card10");
         getContentPane().add(affLocal1, "card11");
         getContentPane().add(affCours1, "card13");
         getContentPane().add(affForm2, "card14");
@@ -194,35 +179,6 @@ public class Frame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        JMenu85.setText("Gestion");
-        JMenu85.setActionCommand("Gestion");
-
-        jMenuItem5.setText("Cours");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        JMenu85.add(jMenuItem5);
-
-        jMenuItem6.setText("Local");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        JMenu85.add(jMenuItem6);
-
-        jMenuItem7.setText("Formateur");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        JMenu85.add(jMenuItem7);
-
-        jMenuBar1.add(JMenu85);
-
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -247,18 +203,6 @@ public class Frame extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         cardl.show(this.getContentPane(), "card5");
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        cardl.show(this.getContentPane(), "card9");
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        cardl.show(this.getContentPane(), "card12");
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        cardl.show(this.getContentPane(), "card10");
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         cardl.show(this.getContentPane(), "card11");
@@ -309,7 +253,6 @@ public class Frame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu JMenu85;
     private projetGUI.AffCours affCours1;
     private projetGUI.AffForm affForm2;
     private projetGUI.AffLocal affLocal1;
@@ -317,10 +260,6 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JMenuItem buttQuit;
     private projetGUI.CoursGUI coursGUI1;
     private projetGUI.FormateurGUI formateurGUI1;
-    private projetGUI.GesCours gesCours1;
-    private projetGUI.GesForm gesForm1;
-    private projetGUI.GesLocal gesLocal1;
-    private projetGUI.GesLocal gesLocal2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -333,14 +272,10 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPopupMenu jPopupMenu1;
     private projetGUI.LocalGUI localGUI1;
     private projetGUI.MainMenu mainMenu2;
-    private projetGUI.RechLocalGUI rechLocalGUI1;
     // End of variables declaration//GEN-END:variables
 }

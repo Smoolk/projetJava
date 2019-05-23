@@ -8,6 +8,7 @@ package projetGUI;
 import javax.swing.JOptionPane;
 import classes.DAO.FormateurDAO;
 import classes.metiers.Formateur;
+
 /**
  *
  * @author jeanl
@@ -17,13 +18,14 @@ public class FormateurGUI extends javax.swing.JPanel {
     /**
      * Creates new form FormateurGUI
      */
-    FormateurDAO formateurDAO=null;
+    FormateurDAO formateurDAO = null;
+
     public FormateurGUI() {
         initComponents();
     }
-    
-    public void setFormateurDAO(FormateurDAO formateurDAO){
-        this.formateurDAO=formateurDAO;
+
+    public void setFormateurDAO(FormateurDAO formateurDAO) {
+        this.formateurDAO = formateurDAO;
     }
 
     /**
@@ -39,23 +41,30 @@ public class FormateurGUI extends javax.swing.JPanel {
         textLocalite = new javax.swing.JTextField();
         textCP = new javax.swing.JTextField();
         textTel = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        textNomFrom = new javax.swing.JTextField();
+        textNomForm = new javax.swing.JTextField();
         textPrenomForm = new javax.swing.JTextField();
         textRueForm = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        textIdFrom = new javax.swing.JTextField();
+        textIdForm = new javax.swing.JTextField();
         textNumForm = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        textIDFORMTRAIT = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        textMatric = new javax.swing.JLabel();
+        textMatr = new javax.swing.JTextField();
 
-        jLabel3.setText("Téléphone");
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Téléphone :");
 
         textLocalite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,38 +72,84 @@ public class FormateurGUI extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Créer local");
-
-        jButton2.setText("Recherche local");
-
-        jButton3.setText("Supprimer local");
-
-        jLabel1.setText("Code postal");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Code postal :");
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel4.setText("Formateur");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel2.setText("Localité");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Localité :");
 
-        jLabel5.setText("Prénom");
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Prénom :");
 
-        jLabel6.setText("Nom");
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Nom :");
 
-        jLabel7.setText("Rue + numéro");
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel7.setText("Rue + numéro :");
 
-        textNomFrom.addActionListener(new java.awt.event.ActionListener() {
+        textNomForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textNomFromActionPerformed(evt);
+                textNomFormActionPerformed(evt);
             }
         });
 
-        jLabel8.setText("Id du formateur");
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel8.setText("Id du formateur :");
 
-        textIdFrom.setEditable(false);
-        textIdFrom.addActionListener(new java.awt.event.ActionListener() {
+        textIdForm.setEditable(false);
+        textIdForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textIdFromActionPerformed(evt);
+                textIdFormActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setText("Id du formateur à traiter :");
+
+        textIDFORMTRAIT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textIDFORMTRAITActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Créer formateur");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Réinitialiser");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Supprimer formateur");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Modifier formateur");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        textMatric.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        textMatric.setText("Matricule :");
+
+        textMatr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textMatrActionPerformed(evt);
             }
         });
 
@@ -107,85 +162,116 @@ public class FormateurGUI extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(textTel))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textLocalite, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(textTel, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(textCP, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(18, 18, 18)
+                                .addComponent(textCP))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textIdFrom)
-                            .addComponent(textPrenomForm, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(textNomFrom)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(textLocalite))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(textRueForm, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textNumForm)))))
+                                .addComponent(textNumForm))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(textPrenomForm))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(textNomForm))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(textIdForm))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textMatric, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(textMatr)))))
                 .addGap(54, 54, 54))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(textIDFORMTRAIT, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textIDFORMTRAIT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textIdFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(textIdForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textMatric, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textMatr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textNomFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(textNomForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textPrenomForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textRueForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textNumForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textLocalite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -194,19 +280,164 @@ public class FormateurGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_textLocaliteActionPerformed
 
-    private void textNomFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomFromActionPerformed
+    private void textNomFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomFormActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textNomFromActionPerformed
+    }//GEN-LAST:event_textNomFormActionPerformed
 
-    private void textIdFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIdFromActionPerformed
+    private void textIdFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIdFormActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textIdFromActionPerformed
+    }//GEN-LAST:event_textIdFormActionPerformed
+
+    private void textIDFORMTRAITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIDFORMTRAITActionPerformed
+        try {
+            if (!textIDFORMTRAIT.getText().isEmpty()) {
+                int idf = Integer.parseInt(textIDFORMTRAIT.getText());
+                Formateur form = formateurDAO.read(idf);
+                System.out.println("coucou");
+                int id = form.getIdform();
+                String matr = form.getMatricule();
+                String nom = form.getNom();
+                String prenom = form.getPrenom();
+                String num = form.getNumero();
+                String rue = form.getRue();
+                String localite = form.getLocalite();
+                int cp = form.getCp();
+                String tel = form.getTel();
+                textIdForm.setText("" + id);
+                textMatr.setText(matr);
+                textNomForm.setText(nom);
+                textPrenomForm.setText(prenom);
+                textRueForm.setText(rue);
+                textNumForm.setText(num);
+                textLocalite.setText(localite);
+                textCP.setText("" + cp);
+                textTel.setText(tel);
+            } else {
+                JOptionPane.showMessageDialog(this, "Le champ est vide, veuillez le compléter", "ERREUR", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Aucun formateur correspondant", "ERREUR", JOptionPane.ERROR_MESSAGE);
+            textIDFORMTRAIT.setText("");
+            textIdForm.setText("");
+            textMatr.setText("");
+            textNomForm.setText("");
+            textPrenomForm.setText("");
+            textRueForm.setText("");
+            textNumForm.setText("");
+            textLocalite.setText("");
+            textCP.setText("");
+            textTel.setText("");
+        }
+    }//GEN-LAST:event_textIDFORMTRAITActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (!textIDFORMTRAIT.getText().isEmpty() || textMatr.getText().isEmpty() || textNomForm.getText().isEmpty() || textPrenomForm.getText().isEmpty() || textRueForm.getText().isEmpty() || textNumForm.getText().isEmpty() || textLocalite.getText().isEmpty() || textCP.getText().isEmpty() || textTel.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "ERREUR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                String matr = textMatr.getText();
+                String nom = textNomForm.getText();
+                String prenom = textPrenomForm.getText();
+                String num = textNumForm.getText();
+                String rue = textRueForm.getText();
+                String localite = textLocalite.getText();
+                int cp = Integer.parseInt(textCP.getText());
+                String tel = textTel.getText();
+                Formateur l = new Formateur(0, matr, nom, prenom, num, rue, localite, cp, tel);
+                l = formateurDAO.create(l);
+                textIdForm.setText("" + l.getIdform());
+                JOptionPane.showMessageDialog(this, "Formateur créé avec succès", "success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        textIDFORMTRAIT.setText("");
+        textIdForm.setText("");
+        textMatr.setText("");
+        textNomForm.setText("");
+        textPrenomForm.setText("");
+        textRueForm.setText("");
+        textNumForm.setText("");
+        textLocalite.setText("");
+        textCP.setText("");
+        textTel.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (textIDFORMTRAIT.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Veuillez indiquer l'ID du formateur à supprimer", "ERREUR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int YesOrNo = JOptionPane.showConfirmDialog(null, "Etes-vous sur de vouloir supprimer ce formateur ?", "Supprimer formateur", JOptionPane.YES_NO_OPTION);
+            if (YesOrNo == 0) {
+                try {
+                    int id = Integer.parseInt(textIDFORMTRAIT.getText());
+                    Formateur f = formateurDAO.read(id);
+                    formateurDAO.delete(f);
+                    JOptionPane.showMessageDialog(this, "Le formateur à été supprimé avec succès", "success", JOptionPane.INFORMATION_MESSAGE);
+                    textIDFORMTRAIT.setText("");
+                    textIdForm.setText("");
+                    textMatr.setText("");
+                    textNomForm.setText("");
+                    textPrenomForm.setText("");
+                    textRueForm.setText("");
+                    textNumForm.setText("");
+                    textLocalite.setText("");
+                    textCP.setText("");
+                    textTel.setText("");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Opération annulée", "Denied", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (textMatr.getText().isEmpty() || textNomForm.getText().isEmpty() || textPrenomForm.getText().isEmpty() || textRueForm.getText().isEmpty() || textNumForm.getText().isEmpty() || textLocalite.getText().isEmpty() || textCP.getText().isEmpty() || textTel.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Veuillez indiquer les nouvelles données dans les champs", "ERREUR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                int id = Integer.parseInt(textIDFORMTRAIT.getText());
+                String matr = textMatr.getText();
+                String nom = textNomForm.getText();
+                String prenom = textPrenomForm.getText();
+                String num = textNumForm.getText();
+                String rue = textRueForm.getText();
+                String localite = textLocalite.getText();
+                int cp = Integer.parseInt(textCP.getText());
+                String tel = textTel.getText();
+                Formateur f = formateurDAO.read(id);
+                f.setMatricule(matr);
+                f.setNom(nom);
+                f.setPrenom(prenom);
+                f.setNumero(num);
+                f.setRue(rue);
+                f.setLocalite(localite);
+                f.setCp(cp);
+                f.setTel(tel);
+                formateurDAO.update(f);
+                JOptionPane.showMessageDialog(this, "Données de formateur modifiées", "success", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void textMatrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textMatrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textMatrActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -215,10 +446,15 @@ public class FormateurGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField textCP;
-    private javax.swing.JTextField textIdFrom;
+    private javax.swing.JTextField textIDFORMTRAIT;
+    private javax.swing.JTextField textIdForm;
     private javax.swing.JTextField textLocalite;
-    private javax.swing.JTextField textNomFrom;
+    private javax.swing.JTextField textMatr;
+    private javax.swing.JLabel textMatric;
+    private javax.swing.JTextField textNomForm;
     private javax.swing.JTextField textNumForm;
     private javax.swing.JTextField textPrenomForm;
     private javax.swing.JTextField textRueForm;

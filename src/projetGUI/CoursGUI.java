@@ -8,6 +8,8 @@ package projetGUI;
 import javax.swing.JOptionPane;
 import classes.DAO.CoursDAO;
 import classes.metiers.Cours;
+import java.util.List;
+import java.util.Vector;
 
 /**
  *
@@ -186,7 +188,26 @@ public class CoursGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_textIdCoursActionPerformed
 
     private void textIDCOURSTRAITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIDCOURSTRAITActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (!textIDCOURSTRAIT.getText().isEmpty()) {
+                int c1 = Integer.parseInt(textIDCOURSTRAIT.getText());
+                Cours cours = coursDAO.read(c1);
+                int id = cours.getIdcours();
+                String matiere = cours.getMatière();
+                int heures = cours.getHeures();
+                textIdCours.setText("" + id);
+                textNomCours.setText(matiere);
+                textNombreHeures.setText("" + heures);
+            } else {
+                JOptionPane.showMessageDialog(this, "Le champ est vide, veuillez le compléter", "ERREUR", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Aucun cours correspondant", "ERREUR", JOptionPane.ERROR_MESSAGE);
+            textIDCOURSTRAIT.setText("");
+            textIdCours.setText("");
+            textNomCours.setText("");
+            textNombreHeures.setText("");
+        }
     }//GEN-LAST:event_textIDCOURSTRAITActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -197,7 +218,7 @@ public class CoursGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (textIDCOURSTRAIT.getText().isEmpty() || !textNomCours.getText().isEmpty() || !textNombreHeures.getText().isEmpty()) {
+        if (!textIDCOURSTRAIT.getText().isEmpty() || textNomCours.getText().isEmpty() || textNombreHeures.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "ERREUR", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
@@ -206,7 +227,7 @@ public class CoursGUI extends javax.swing.JPanel {
                 Cours c1 = new Cours(0, matiere, heures);
                 c1 = coursDAO.create(c1);
                 textIdCours.setText("" + c1.getIdcours());
-                JOptionPane.showMessageDialog(this, "Bureau ajouté ", "success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Cours créé avec succès", "success", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
             }
@@ -233,7 +254,28 @@ public class CoursGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        if (textIDCOURSTRAIT.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Veuillez indiquer l'ID du cours à supprimer", "ERREUR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int YesOrNo = JOptionPane.showConfirmDialog(null, "Etes-vous sur de vouloir supprimer ce cours ?", "Supprimer cours", JOptionPane.YES_NO_OPTION);
+            if (YesOrNo == 0) {
+                try {
+                    int id = Integer.parseInt(textIDCOURSTRAIT.getText());
+                    Cours c1 = coursDAO.read(id);
+                    coursDAO.delete(c1);
+                    JOptionPane.showMessageDialog(this, "Le cours à été supprimé avec succès", "success", JOptionPane.INFORMATION_MESSAGE);
+                    textIDCOURSTRAIT.setText("");
+                    textIdCours.setText("");
+                    textNomCours.setText("");
+                    textNombreHeures.setText("");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Opération annulée", "Denied", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
