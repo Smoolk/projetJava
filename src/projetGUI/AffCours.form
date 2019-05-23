@@ -27,7 +27,7 @@
               <Component id="lbl_imma" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="textLoc" min="-2" pref="242" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="108" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="105" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,7 +54,7 @@
           <Font name="Calibri" size="24" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Affichage des locaux"/>
+        <Property name="text" type="java.lang.String" value="Affichage des cours"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -99,7 +99,7 @@
     <Component class="javax.swing.JLabel" name="lbl_imma">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="Local recherch&#xe9; :"/>
+        <Property name="text" type="java.lang.String" value="Cours recherch&#xe9; :"/>
       </Properties>
     </Component>
   </SubComponents>

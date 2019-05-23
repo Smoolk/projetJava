@@ -9,34 +9,39 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import classes.DAO.LocalDAO;
-import classes.metiers.Local;
+import classes.DAO.FormateurDAO;
+import classes.metiers.Formateur;
 
 /**
  *
  * @author jeanl
  */
-public class AffLocal extends javax.swing.JPanel {
+public class AffForm extends javax.swing.JPanel {
 
-    LocalDAO localDAO = null;
+    FormateurDAO formateurDAO = null;
     DefaultTableModel dft1 = new DefaultTableModel();
 
     /**
-     * Creates new form AffLocal
+     * Creates new form AffFormateur
      */
-    public AffLocal() {
+    public AffForm() {
         initComponents();
 
-        dft1.addColumn("Id local");
-        dft1.addColumn("Sigle");
-        dft1.addColumn("Places");
-        dft1.addColumn("Description");
+        dft1.addColumn("ID");
+        dft1.addColumn("Matricule");
+        dft1.addColumn("Nom");
+        dft1.addColumn("Prénom");
+        dft1.addColumn("Numéro");
+        dft1.addColumn("Rue");
+        dft1.addColumn("Localité");
+        dft1.addColumn("Code postal");
+        dft1.addColumn("Téléphone");
         tbl_rech.setModel(dft1);
 
     }
 
-    public void setLocalDAO(LocalDAO localDAO) {
-        this.localDAO = localDAO;
+    public void setFormateurDAO(FormateurDAO formateurDAO) {
+        this.formateurDAO = formateurDAO;
     }
 
     /*public void setLocationDAO(LocationDAO locationDAO) {
@@ -60,7 +65,7 @@ public class AffLocal extends javax.swing.JPanel {
 
         lbl_titre.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         lbl_titre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_titre.setText("Affichage des locaux");
+        lbl_titre.setText("Affichage des formateurs");
 
         tbl_rech.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,7 +90,7 @@ public class AffLocal extends javax.swing.JPanel {
         });
 
         lbl_imma.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbl_imma.setText("Local recherché :");
+        lbl_imma.setText("Formateur recherché :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -101,7 +106,7 @@ public class AffLocal extends javax.swing.JPanel {
                 .addComponent(lbl_imma)
                 .addGap(18, 18, 18)
                 .addComponent(textLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 108, Short.MAX_VALUE))
+                .addGap(0, 80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,23 +125,28 @@ public class AffLocal extends javax.swing.JPanel {
     private void textLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textLocActionPerformed
         try {
             if (!textLoc.getText().isEmpty()) {
-                String loc = textLoc.getText();
-                System.out.println(loc);
-                List<Local> local = localDAO.rechNom(loc);
+                String form = textLoc.getText();
+                //System.out.println(form);
+                List<Formateur> formateur = formateurDAO.rechNom(form);
                 
                 int nr = dft1.getRowCount();
                 for (int i = nr - 1; i >= 0; i--) {
                     dft1.removeRow(i);
                 }
                 
-                for (Local l1 : local) {
+                for (Formateur f1 : formateur) {
                     Vector v = new Vector();
           
-                    v.add(l1.getIdlocal());
-                    v.add(l1.getSigle());
-                    v.add(l1.getPlaces());
-                    v.add(l1.getDescription());
-                    System.out.println(local);
+                    v.add(f1.getIdform());
+                    v.add(f1.getMatricule());
+                    v.add(f1.getNom());
+                    v.add(f1.getPrenom());
+                    v.add(f1.getNumero());
+                    v.add(f1.getRue());
+                    v.add(f1.getLocalite());
+                    v.add(f1.getCp());
+                    v.add(f1.getTel());
+                    System.out.println(formateur);
 
                     dft1.addRow(v);
 
@@ -146,7 +156,7 @@ public class AffLocal extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Le champ est vide, veuillez le compléter", "ERREUR", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Aucun local correspondant", "ERREUR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Aucun formateur correspondant", "ERREUR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_textLocActionPerformed
 

@@ -9,34 +9,33 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import classes.DAO.LocalDAO;
-import classes.metiers.Local;
+import classes.DAO.CoursDAO;
+import classes.metiers.Cours;
 
 /**
  *
  * @author jeanl
  */
-public class AffLocal extends javax.swing.JPanel {
+public class AffCours extends javax.swing.JPanel {
 
-    LocalDAO localDAO = null;
+    CoursDAO coursDAO = null;
     DefaultTableModel dft1 = new DefaultTableModel();
 
     /**
-     * Creates new form AffLocal
+     * Creates new form AffCours
      */
-    public AffLocal() {
+    public AffCours() {
         initComponents();
 
-        dft1.addColumn("Id local");
-        dft1.addColumn("Sigle");
-        dft1.addColumn("Places");
-        dft1.addColumn("Description");
+        dft1.addColumn("Id cours");
+        dft1.addColumn("Matière");
+        dft1.addColumn("Nombre d'heures");
         tbl_rech.setModel(dft1);
 
     }
 
-    public void setLocalDAO(LocalDAO localDAO) {
-        this.localDAO = localDAO;
+    public void setCoursDAO(CoursDAO coursDAO) {
+        this.coursDAO = coursDAO;
     }
 
     /*public void setLocationDAO(LocationDAO locationDAO) {
@@ -60,7 +59,7 @@ public class AffLocal extends javax.swing.JPanel {
 
         lbl_titre.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         lbl_titre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_titre.setText("Affichage des locaux");
+        lbl_titre.setText("Affichage des cours");
 
         tbl_rech.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,7 +84,7 @@ public class AffLocal extends javax.swing.JPanel {
         });
 
         lbl_imma.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbl_imma.setText("Local recherché :");
+        lbl_imma.setText("Cours recherché :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -101,7 +100,7 @@ public class AffLocal extends javax.swing.JPanel {
                 .addComponent(lbl_imma)
                 .addGap(18, 18, 18)
                 .addComponent(textLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 108, Short.MAX_VALUE))
+                .addGap(0, 105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,21 +121,20 @@ public class AffLocal extends javax.swing.JPanel {
             if (!textLoc.getText().isEmpty()) {
                 String loc = textLoc.getText();
                 System.out.println(loc);
-                List<Local> local = localDAO.rechNom(loc);
+                List<Cours> cours = coursDAO.rechNom(loc);
                 
                 int nr = dft1.getRowCount();
                 for (int i = nr - 1; i >= 0; i--) {
                     dft1.removeRow(i);
                 }
                 
-                for (Local l1 : local) {
+                for (Cours l1 : cours) {
                     Vector v = new Vector();
           
-                    v.add(l1.getIdlocal());
-                    v.add(l1.getSigle());
-                    v.add(l1.getPlaces());
-                    v.add(l1.getDescription());
-                    System.out.println(local);
+                    v.add(l1.getIdcours());
+                    v.add(l1.getMatière());
+                    v.add(l1.getHeures());
+                    System.out.println(cours);
 
                     dft1.addRow(v);
 
@@ -146,7 +144,7 @@ public class AffLocal extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Le champ est vide, veuillez le compléter", "ERREUR", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Aucun local correspondant", "ERREUR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Aucun cours correspondant", "ERREUR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_textLocActionPerformed
 

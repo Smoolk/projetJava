@@ -41,7 +41,9 @@ public class Frame extends javax.swing.JFrame {
         formateurDAO.setConnection(dbConnect);
         localGUI1.setLocalDAO(localDAO);
         rechLocalGUI1.setLocalDAO(localDAO);
-        //recherche_local_id2.setLocalDAO(localDAO);
+        affLocal1.setLocalDAO(localDAO);
+        affCours1.setCoursDAO(coursDAO);
+        affForm2.setFormateurDAO(formateurDAO);
         //affich_loc1.setLocalDAO(localDAO);
         //affich_loc1.setLocationDAO(locationDAO);
         coursGUI1.setCoursDAO(coursDAO);
@@ -72,6 +74,9 @@ public class Frame extends javax.swing.JFrame {
         gesLocal2 = new projetGUI.GesLocal();
         gesCours1 = new projetGUI.GesCours();
         gesForm1 = new projetGUI.GesForm();
+        affLocal1 = new projetGUI.AffLocal();
+        affCours1 = new projetGUI.AffCours();
+        affForm2 = new projetGUI.AffForm();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         buttHome = new javax.swing.JMenuItem();
@@ -80,6 +85,10 @@ public class Frame extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         JMenu85 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -105,6 +114,9 @@ public class Frame extends javax.swing.JFrame {
         getContentPane().add(gesLocal2, "card12");
         getContentPane().add(gesCours1, "card9");
         getContentPane().add(gesForm1, "card10");
+        getContentPane().add(affLocal1, "card11");
+        getContentPane().add(affCours1, "card13");
+        getContentPane().add(affForm2, "card14");
 
         jMenu4.setText("Menu");
 
@@ -153,6 +165,34 @@ public class Frame extends javax.swing.JFrame {
         jMenu5.add(jMenuItem4);
 
         jMenuBar1.add(jMenu5);
+
+        jMenu6.setText("Affichage");
+
+        jMenuItem9.setText("Cours");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem9);
+
+        jMenuItem8.setText("Local");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem8);
+
+        jMenuItem10.setText("Formateur");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem10);
+
+        jMenuBar1.add(jMenu6);
 
         JMenu85.setText("Gestion");
         JMenu85.setActionCommand("Gestion");
@@ -220,6 +260,18 @@ public class Frame extends javax.swing.JFrame {
         cardl.show(this.getContentPane(), "card10");
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        cardl.show(this.getContentPane(), "card11");
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        cardl.show(this.getContentPane(), "card13");
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        cardl.show(this.getContentPane(), "card14");
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -258,6 +310,9 @@ public class Frame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu JMenu85;
+    private projetGUI.AffCours affCours1;
+    private projetGUI.AffForm affForm2;
+    private projetGUI.AffLocal affLocal1;
     private javax.swing.JMenuItem buttHome;
     private javax.swing.JMenuItem buttQuit;
     private projetGUI.CoursGUI coursGUI1;
@@ -271,14 +326,18 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPopupMenu jPopupMenu1;
     private projetGUI.LocalGUI localGUI1;
     private projetGUI.MainMenu mainMenu2;
