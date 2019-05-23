@@ -5,17 +5,27 @@
  */
 package projetGUI;
 
+import javax.swing.JOptionPane;
+import classes.DAO.CoursDAO;
+import classes.metiers.Cours;
+
 /**
  *
  * @author jeanl
  */
+
 public class Cours extends javax.swing.JPanel {
 
     /**
      * Creates new form rechCours
      */
+    CoursDAO coursDAO = null;
     public Cours() {
         initComponents();
+    }
+    
+    public void setCoursDAO(CoursDAO coursDAO){
+        this.coursDAO=coursDAO;
     }
 
     /**

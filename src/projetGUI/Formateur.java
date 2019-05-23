@@ -5,6 +5,9 @@
  */
 package projetGUI;
 
+import javax.swing.JOptionPane;
+import classes.DAO.FormateurDAO;
+import classes.metiers.Formateur;
 /**
  *
  * @author jeanl
@@ -14,8 +17,13 @@ public class Formateur extends javax.swing.JPanel {
     /**
      * Creates new form Formateur
      */
+    FormateurDAO formateurDAO=null;
     public Formateur() {
         initComponents();
+    }
+    
+    public void setFormateurDAO(FormateurDAO formateurDAO){
+        this.formateurDAO=formateurDAO;
     }
 
     /**

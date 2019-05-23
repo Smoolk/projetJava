@@ -5,6 +5,10 @@
  */
 package projetGUI;
 
+import javax.swing.JOptionPane;
+import classes.DAO.LocalDAO;
+import classes.metiers.Local;
+
 /**
  *
  * @author jeanl
@@ -14,10 +18,14 @@ public class Local extends javax.swing.JPanel {
     /**
      * Creates new form Local
      */
+    LocalDAO localDAO = null;
     public Local() {
         initComponents();
     }
 
+    public void setLocalDAO(LocalDAO localDAO){
+        this.localDAO=localDAO;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
