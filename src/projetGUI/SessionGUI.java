@@ -352,6 +352,7 @@ public class SessionGUI extends javax.swing.JPanel {
         textNbi.setText("");
         textIdco.setText("");
         textIdloc.setText("");
+        textidform.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -364,7 +365,7 @@ public class SessionGUI extends javax.swing.JPanel {
                 try {
                     int id = Integer.parseInt(textIDSESSTRAIT.getText());
                     Session s = sessionDAO.read(id);
-                    Infos i = infoDAO.read(s.getIdsesscours());
+                    Infos i = infoDAO.read1(s.getIdsesscours());
                     infoDAO.delete(i);
                     sessionDAO.delete(s);
                     JOptionPane.showMessageDialog(this, "Le session à été supprimé avec succès", "success", JOptionPane.INFORMATION_MESSAGE);

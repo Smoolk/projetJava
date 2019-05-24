@@ -24,7 +24,7 @@ public class InfoDAO extends DAO<Infos> {
     public Infos create(Infos obj) throws SQLException {
         
         String req1 = "insert into PROJ_INFOS(NH, idform, idsesscours) values(?,?,?)";
-        String req2 = "select idinfo from PROJ_INFOS where NH=? and idform=? and idsesscours=?";
+        String req2 = "select idinfos from PROJ_INFOS where NH=? and idform=? and idsesscours=?";
         try (PreparedStatement pstm1 = dbConnect.prepareStatement(req1);
                 PreparedStatement pstm2 = dbConnect.prepareStatement(req2)) {
             pstm1.setInt(1, obj.getNh());
@@ -39,9 +39,9 @@ public class InfoDAO extends DAO<Infos> {
             pstm2.setInt(3, obj.getIdsesscours());
             try (ResultSet rs = pstm2.executeQuery()) {
                 if (rs.next()) {
-                    int idinfo = rs.getInt(1);
-                    obj.setIdinfos(idinfo);
-                    return read(idinfo);
+                    int idinfos = rs.getInt(1);
+                    obj.setIdinfos(idinfos);
+                    return read(idinfos);
                 } else {
                     throw new SQLException("erreur de création info, record introuvable");
                 }
@@ -59,7 +59,31 @@ public class InfoDAO extends DAO<Infos> {
     @Override
     public Infos read(int idinfos) throws SQLException {
 
-        String req = "select idform from PROJ_INFOS where idsesscours = ?";
+        String req = "select * from PROJ_INFOS where idinfos = ?";
+
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+
+            pstm.setInt(1, idinfos);
+            try (ResultSet rs = pstm.executeQuery()) {
+                if (rs.next()) {
+                    int nh = rs.getInt("NH");
+                    int idform = rs.getInt("IDFORM");
+                    int idsess = rs.getInt("IDSESSCOURS");
+                    int idinf = rs.getInt("IDINFOS");
+                    return new Infos(nh, idform, idsess, idinf);
+                } else {
+                    throw new SQLException("Code inconnu");
+                }
+
+            }
+        }
+    }
+    
+    
+    
+    public Infos read1(int idinfos) throws SQLException {
+
+        String req = "select * from PROJ_INFOS where idsesscours = ?";
 
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
@@ -111,11 +135,11 @@ public class InfoDAO extends DAO<Infos> {
      */
     @Override
     public void delete(Infos obj) throws SQLException {
-
+        System.out.println(obj.getIdsesscours());
         String req = "delete from PROJ_INFOS where idsesscours = ?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
-            pstm.setInt(1, obj.getIdinfos());
+            pstm.setInt(1, obj.getIdsesscours());
             int n = pstm.executeUpdate();
             if (n == 0) {
                 throw new SQLException("aucune ligne info effacée");
