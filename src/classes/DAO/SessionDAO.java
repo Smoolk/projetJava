@@ -10,7 +10,7 @@ package classes.DAO;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.*;
-import classes.metiers.SessionCours;
+import classes.metiers.Session;
 
 public class SessionDAO extends DAO<Session> {
 
@@ -24,27 +24,31 @@ public class SessionDAO extends DAO<Session> {
     @Override
     public Session create(Session obj) throws SQLException {
         
-        String req1 = "insert into PROJ_LOCAL(sigle, places, description) values(?,?,?)";
-        String req2 = "select idsession from PROJ_LOCAL where sigle=? and places=? and description=?";
+        String req1 = "insert into PROJ_SESSIONCOURS(datedebut, datefin, nbreinscrits, idcours, idlocal) values(?,?,?,?,?)";
+        String req2 = "select idsession from PROJ_SESSIONCOURS where datedebut=? and datefin=? and nbreinscrits=? and idcours=? and idlocal=?";
         try (PreparedStatement pstm1 = dbConnect.prepareStatement(req1);
                 PreparedStatement pstm2 = dbConnect.prepareStatement(req2)) {
-            pstm1.setString(1, obj.getSigle());
-            pstm1.setInt(2, obj.getPlaces());
-            pstm1.setString(3, obj.getDescription());
+            pstm1.setString(1, obj.getDatedebut());
+            pstm1.setString(2, obj.getDatefin());
+            pstm1.setInt(3, obj.getNbreinscrits());
+            pstm1.setInt(4, obj.getIdcours());
+            pstm1.setInt(5, obj.getIdlocal());
             int n = pstm1.executeUpdate();
             if (n == 0) {
-                throw new SQLException("erreur de creation session, aucune ligne créée");
+                throw new SQLException("erreur de creation de session, aucune ligne créée");
             }
-            pstm2.setString(1, obj.getSigle());
-            pstm2.setInt(2, obj.getPlaces());
-            pstm2.setString(3, obj.getDescription());
+            pstm2.setString(1, obj.getDatedebut());
+            pstm2.setString(2, obj.getDatefin());
+            pstm2.setInt(3, obj.getNbreinscrits());
+            pstm2.setInt(4, obj.getIdcours());
+            pstm2.setInt(5, obj.getIdlocal());
             try (ResultSet rs = pstm2.executeQuery()) {
                 if (rs.next()) {
                     int idsession = rs.getInt(1);
-                    obj.setIdsession(idsession);
+                    obj.setIdsesscours(idsession);
                     return read(idsession);
                 } else {
-                    throw new SQLException("erreur de création session, record introuvable");
+                    throw new SQLException("erreur de création de session, record introuvable");
                 }
             }
         }
@@ -60,17 +64,19 @@ public class SessionDAO extends DAO<Session> {
     @Override
     public Session read(int idsession) throws SQLException {
 
-        String req = "select * from PROJ_LOCAL where idsession = ?";
+        String req = "select * from PROJ_SESSIONCOURS where idsesscours = ?";
 
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
             pstm.setInt(1, idsession);
             try (ResultSet rs = pstm.executeQuery()) {
                 if (rs.next()) {
-                    String sigle = rs.getString("SIGLE");
-                    int places = rs.getInt("PLACES");
-                    String description = rs.getString("DESCRIPTION");
-                    return new Session(idsession, sigle, places, description);
+                    String datedebut = rs.getString("DATEDEBUT");
+                    String datefin = rs.getString("DATEFIN");
+                    int nbreinscrits = rs.getInt("NBREINSCRITS");
+                    int idcours = rs.getInt("IDCOURS");
+                    int idlocal = rs.getInt("IDLOCAL");
+                    return new Session(idsession, datedebut, datefin, nbreinscrits, idcours, idlocal);
 
                 } else {
                     throw new SQLException("Code inconnu");
@@ -89,18 +95,20 @@ public class SessionDAO extends DAO<Session> {
      */
     @Override
     public Session update(Session obj) throws SQLException {
-        String req = "update PROJ_LOCAL set sigle=?, places=?, description=? where idsession=?";
+        String req = "update PROJ_SESSIONCOURS set datedebut=?, datefin=?, nbreinscrits=?, idcours=?, idlocal=? where idsession=?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
-            pstm.setInt(4, obj.getIdsession());
-            pstm.setString(1, obj.getSigle());
-            pstm.setInt(2, obj.getPlaces());
-            pstm.setString(3, obj.getDescription());
+            pstm.setInt(6, obj.getIdsesscours());
+            pstm.setString(1, obj.getDatedebut());
+            pstm.setString(2, obj.getDatefin());
+            pstm.setInt(3, obj.getNbreinscrits());
+            pstm.setInt(4, obj.getIdcours());
+            pstm.setInt(5, obj.getIdlocal());
             int n = pstm.executeUpdate();
             if (n == 0) {
-                throw new SQLException("aucune ligne session mise à jour");
+                throw new SQLException("aucune ligne de session mise à jour");
             }
-            return read(obj.getIdsession());
+            return read(obj.getIdsesscours());
         }
     }
 
@@ -113,7 +121,7 @@ public class SessionDAO extends DAO<Session> {
     @Override
     public void delete(Session obj) throws SQLException {
 
-        String req = "delete from PROJ_LOCAL where idsession= ?";
+        String req = "delete from PROJ_SESSIONCOURS where idsession= ?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
             pstm.setInt(1, obj.getIdsession());
@@ -134,7 +142,7 @@ public class SessionDAO extends DAO<Session> {
      */
     public List<Session> rechNom(String nomrech) throws SQLException {
         List<Session> plusieurs = new ArrayList<>();
-        String req = "select * from PROJ_LOCAL where description like ?";
+        String req = "select * from VUESESS where MATIERE like ? ";
 
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
             pstm.setString(1, "%"+nomrech+"%");
@@ -142,15 +150,21 @@ public class SessionDAO extends DAO<Session> {
                 boolean trouve = false;
                 while (rs.next()) {
                     trouve = true;
-                    int idsession = rs.getInt("IDLOCAL");
+                    int idsession = rs.getInt("IDSESSIONCOURS");
+                    String nom = rs.getString("NOM");
+                    String prenom = rs.getString("PRENOM");
+                    String datedebut = rs.getString("DATEDEBUT");
+                    String datefin = rs.getString("DATEFIN");
+                    String matiere = rs.getString("MATIERE");
                     String sigle = rs.getString("SIGLE");
-                    int places = rs.getInt("PLACES");
-                    String description = rs.getString("DESCRIPTION");
-                    plusieurs.add(new Session(idsession, sigle, places, description));
+                    int nbreinscrits = rs.getInt("NBREINSCRITS");
+                    int heures = rs.getInt("HEURES");
+                    plusieurs.add(new Session(idsession, nom, prenom, datedebut, datefin, matiere, sigle, nbreinscrits, heures));
+                    System.out.println(plusieurs);
                 }
 
                 if (!trouve) {
-                    throw new SQLException(" aucun session !");
+                    throw new SQLException(" aucune session !");
                 } else {
                     return plusieurs;
                 }

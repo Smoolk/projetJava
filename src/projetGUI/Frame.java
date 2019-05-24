@@ -8,6 +8,7 @@ package projetGUI;
 import classes.DAO.CoursDAO;
 import classes.DAO.FormateurDAO;
 import classes.DAO.LocalDAO;
+import classes.DAO.SessionDAO;
 import java.awt.CardLayout;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
@@ -39,6 +40,9 @@ public class Frame extends javax.swing.JFrame {
         coursDAO.setConnection(dbConnect);
         FormateurDAO formateurDAO = new FormateurDAO();
         formateurDAO.setConnection(dbConnect);
+        SessionDAO sessionDAO = new SessionDAO();
+        sessionDAO.setConnection(dbConnect);
+        
         localGUI1.setLocalDAO(localDAO);
         affLocal1.setLocalDAO(localDAO);
         affCours1.setCoursDAO(coursDAO);
@@ -47,6 +51,7 @@ public class Frame extends javax.swing.JFrame {
         //affich_loc1.setLocationDAO(locationDAO);
         coursGUI1.setCoursDAO(coursDAO);
         formateurGUI1.setFormateurDAO(formateurDAO);
+        affSess1.setSessionDAO(sessionDAO);
         
     }
 
@@ -71,6 +76,7 @@ public class Frame extends javax.swing.JFrame {
         affLocal1 = new projetGUI.AffLocal();
         affCours1 = new projetGUI.AffCours();
         affForm2 = new projetGUI.AffForm();
+        affSess1 = new projetGUI.AffSess();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         buttHome = new javax.swing.JMenuItem();
@@ -79,6 +85,7 @@ public class Frame extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -102,6 +109,7 @@ public class Frame extends javax.swing.JFrame {
         getContentPane().add(affLocal1, "card11");
         getContentPane().add(affCours1, "card13");
         getContentPane().add(affForm2, "card14");
+        getContentPane().add(affSess1, "card9");
 
         jMenu4.setText("Menu");
 
@@ -148,6 +156,14 @@ public class Frame extends javax.swing.JFrame {
             }
         });
         jMenu6.add(jMenuItem10);
+
+        jMenuItem5.setText("Session");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem5);
 
         jMenuBar1.add(jMenu6);
 
@@ -216,6 +232,10 @@ public class Frame extends javax.swing.JFrame {
         cardl.show(this.getContentPane(), "card14");
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        cardl.show(this.getContentPane(), "card9");
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -256,6 +276,7 @@ public class Frame extends javax.swing.JFrame {
     private projetGUI.AffCours affCours1;
     private projetGUI.AffForm affForm2;
     private projetGUI.AffLocal affLocal1;
+    private projetGUI.AffSess affSess1;
     private javax.swing.JMenuItem buttHome;
     private javax.swing.JMenuItem buttQuit;
     private projetGUI.CoursGUI coursGUI1;
@@ -272,6 +293,7 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPopupMenu jPopupMenu1;

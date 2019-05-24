@@ -12,7 +12,7 @@ import classes.DAO.DAO;
 import classes.metiers.Cours;
 import classes.metiers.Formateur;
 import classes.metiers.Cours;
-import classes.metiers.SessionCours;
+import classes.metiers.Session;
 import myconnections.DBConnection;
 
 public class GestCours {
