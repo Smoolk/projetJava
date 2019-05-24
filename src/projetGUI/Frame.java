@@ -7,6 +7,7 @@ package projetGUI;
 
 import classes.DAO.CoursDAO;
 import classes.DAO.FormateurDAO;
+import classes.DAO.InfoDAO;
 import classes.DAO.LocalDAO;
 import classes.DAO.SessionDAO;
 import java.awt.CardLayout;
@@ -42,16 +43,19 @@ public class Frame extends javax.swing.JFrame {
         formateurDAO.setConnection(dbConnect);
         SessionDAO sessionDAO = new SessionDAO();
         sessionDAO.setConnection(dbConnect);
+        InfoDAO infoDAO = new InfoDAO();
+        infoDAO.setConnection(dbConnect);
         
         localGUI1.setLocalDAO(localDAO);
         affLocal1.setLocalDAO(localDAO);
         affCours1.setCoursDAO(coursDAO);
         affForm2.setFormateurDAO(formateurDAO);
-        //affich_loc1.setLocalDAO(localDAO);
-        //affich_loc1.setLocationDAO(locationDAO);
         coursGUI1.setCoursDAO(coursDAO);
         formateurGUI1.setFormateurDAO(formateurDAO);
         affSess1.setSessionDAO(sessionDAO);
+        sessionGUI1.setSessionDAO(sessionDAO);
+        sessionGUI1.setInfoDAO(infoDAO);
+                
         
     }
 
@@ -77,6 +81,7 @@ public class Frame extends javax.swing.JFrame {
         affCours1 = new projetGUI.AffCours();
         affForm2 = new projetGUI.AffForm();
         affSess1 = new projetGUI.AffSess();
+        sessionGUI1 = new projetGUI.SessionGUI();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         buttHome = new javax.swing.JMenuItem();
@@ -90,6 +95,7 @@ public class Frame extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        Session = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -110,6 +116,7 @@ public class Frame extends javax.swing.JFrame {
         getContentPane().add(affCours1, "card13");
         getContentPane().add(affForm2, "card14");
         getContentPane().add(affSess1, "card9");
+        getContentPane().add(sessionGUI1, "card10");
 
         jMenu4.setText("Menu");
 
@@ -193,6 +200,14 @@ public class Frame extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem4);
 
+        Session.setText("Session");
+        Session.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SessionActionPerformed(evt);
+            }
+        });
+        jMenu5.add(Session);
+
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -236,6 +251,10 @@ public class Frame extends javax.swing.JFrame {
         cardl.show(this.getContentPane(), "card9");
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void SessionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SessionActionPerformed
+        cardl.show(this.getContentPane(), "card10");
+    }//GEN-LAST:event_SessionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -273,6 +292,7 @@ public class Frame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Session;
     private projetGUI.AffCours affCours1;
     private projetGUI.AffForm affForm2;
     private projetGUI.AffLocal affLocal1;
@@ -299,5 +319,6 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private projetGUI.LocalGUI localGUI1;
     private projetGUI.MainMenu mainMenu2;
+    private projetGUI.SessionGUI sessionGUI1;
     // End of variables declaration//GEN-END:variables
 }

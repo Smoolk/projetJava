@@ -23,13 +23,13 @@ public class SessionDAO extends DAO<Session> {
      */
     @Override
     public Session create(Session obj) throws SQLException {
-        
+
         String req1 = "insert into PROJ_SESSIONCOURS(datedebut, datefin, nbreinscrits, idcours, idlocal) values(?,?,?,?,?)";
-        String req2 = "select idsession from PROJ_SESSIONCOURS where datedebut=? and datefin=? and nbreinscrits=? and idcours=? and idlocal=?";
+        String req2 = "select idsesscours from PROJ_SESSIONCOURS where datedebut=? and datefin=? and nbreinscrits=? and idcours=? and idlocal=?";
         try (PreparedStatement pstm1 = dbConnect.prepareStatement(req1);
                 PreparedStatement pstm2 = dbConnect.prepareStatement(req2)) {
-            pstm1.setString(1, obj.getDatedebut());
-            pstm1.setString(2, obj.getDatefin());
+            pstm1.setDate(1, java.sql.Date.valueOf(obj.getDatedebut()));
+            pstm1.setDate(2, java.sql.Date.valueOf(obj.getDatefin()));
             pstm1.setInt(3, obj.getNbreinscrits());
             pstm1.setInt(4, obj.getIdcours());
             pstm1.setInt(5, obj.getIdlocal());
@@ -37,8 +37,8 @@ public class SessionDAO extends DAO<Session> {
             if (n == 0) {
                 throw new SQLException("erreur de creation de session, aucune ligne créée");
             }
-            pstm2.setString(1, obj.getDatedebut());
-            pstm2.setString(2, obj.getDatefin());
+            pstm2.setDate(1, java.sql.Date.valueOf(obj.getDatedebut()));
+            pstm2.setDate(2, java.sql.Date.valueOf(obj.getDatefin()));
             pstm2.setInt(3, obj.getNbreinscrits());
             pstm2.setInt(4, obj.getIdcours());
             pstm2.setInt(5, obj.getIdlocal());
@@ -71,8 +71,8 @@ public class SessionDAO extends DAO<Session> {
             pstm.setInt(1, idsession);
             try (ResultSet rs = pstm.executeQuery()) {
                 if (rs.next()) {
-                    String datedebut = rs.getString("DATEDEBUT");
-                    String datefin = rs.getString("DATEFIN");
+                    LocalDate datedebut = rs.getDate("DATEDEBUT").toLocalDate();
+                    LocalDate datefin = rs.getDate("DATEFIN").toLocalDate();
                     int nbreinscrits = rs.getInt("NBREINSCRITS");
                     int idcours = rs.getInt("IDCOURS");
                     int idlocal = rs.getInt("IDLOCAL");
@@ -95,12 +95,12 @@ public class SessionDAO extends DAO<Session> {
      */
     @Override
     public Session update(Session obj) throws SQLException {
-        String req = "update PROJ_SESSIONCOURS set datedebut=?, datefin=?, nbreinscrits=?, idcours=?, idlocal=? where idsession=?";
+        String req = "update PROJ_SESSIONCOURS set datedebut=?, datefin=?, nbreinscrits=?, idcours=?, idlocal=? where idsesscours=?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
             pstm.setInt(6, obj.getIdsesscours());
-            pstm.setString(1, obj.getDatedebut());
-            pstm.setString(2, obj.getDatefin());
+            pstm.setDate(1, java.sql.Date.valueOf(obj.getDatedebut()));
+            pstm.setDate(2, java.sql.Date.valueOf(obj.getDatefin()));
             pstm.setInt(3, obj.getNbreinscrits());
             pstm.setInt(4, obj.getIdcours());
             pstm.setInt(5, obj.getIdlocal());
@@ -121,10 +121,10 @@ public class SessionDAO extends DAO<Session> {
     @Override
     public void delete(Session obj) throws SQLException {
 
-        String req = "delete from PROJ_SESSIONCOURS where idsession= ?";
+        String req = "delete from PROJ_SESSIONCOURS where idsesscours= ?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
-            pstm.setInt(1, obj.getIdsession());
+            pstm.setInt(1, obj.getIdsesscours());
             int n = pstm.executeUpdate();
             if (n == 0) {
                 throw new SQLException("aucune ligne session effacée");
@@ -134,33 +134,32 @@ public class SessionDAO extends DAO<Session> {
     }
 
     /**
-     * méthode permettant de récupérer tous les locaux portant un
-     * certain nom
+     * méthode permettant de récupérer tous les locaux portant un certain nom
+     *
      * @param nomrech nom recherché
      * @return liste de locaux
      * @throws SQLException nom inconnu
      */
     public List<Session> rechNom(String nomrech) throws SQLException {
         List<Session> plusieurs = new ArrayList<>();
-        String req = "select * from VUESESS where MATIERE like ? ";
+        String req = "select * from VUESESS where matiere like ? ";
 
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
-            pstm.setString(1, "%"+nomrech+"%");
+            pstm.setString(1, "%" + nomrech + "%");
             try (ResultSet rs = pstm.executeQuery()) {
                 boolean trouve = false;
                 while (rs.next()) {
                     trouve = true;
-                    int idsession = rs.getInt("IDSESSIONCOURS");
+                    int idsession = rs.getInt("IDSESSCOURS");
                     String nom = rs.getString("NOM");
                     String prenom = rs.getString("PRENOM");
-                    String datedebut = rs.getString("DATEDEBUT");
-                    String datefin = rs.getString("DATEFIN");
+                    LocalDate datedebut = rs.getDate("DATEDEBUT").toLocalDate();
+                    LocalDate datefin = rs.getDate("DATEFIN").toLocalDate();
                     String matiere = rs.getString("MATIERE");
                     String sigle = rs.getString("SIGLE");
                     int nbreinscrits = rs.getInt("NBREINSCRITS");
                     int heures = rs.getInt("HEURES");
                     plusieurs.add(new Session(idsession, nom, prenom, datedebut, datefin, matiere, sigle, nbreinscrits, heures));
-                    System.out.println(plusieurs);
                 }
 
                 if (!trouve) {
@@ -170,73 +169,70 @@ public class SessionDAO extends DAO<Session> {
                 }
             }
         }
-        
-        
+
     }
-    
-    
+
     /**
-     * méthode permettant de récupérer la date de la dernière commande d'un session
+     * méthode permettant de récupérer la date de la dernière commande d'un
+     * session
+     *
      * @param obj session recherché
-     * @return  date de la dernière commande
+     * @return date de la dernière commande
      * @throws SQLException session sans commande
      */
-    /**public SessionDate dern_com(Session obj) throws SQLException{
-         String req = "select derniere_com from CLIDATE where idsession = ?";
-         try(PreparedStatement pstm = dbConnect.prepareStatement(req)){
-             pstm.setInt(1,obj.getIdsession());
-             try(ResultSet rs = pstm.executeQuery()){
-                 if(rs.next()){
-                     SessionDate dt = rs.getDate(1).toSessionDate();
-                     return dt;
-                 }
-                 else throw new SQLException("aucune commande enregistrée pour ce session");
-             }
-         }
-    }
-    **/
-    
     /**
-	 * Permet de récupérer un objet via son ID
-	 * @param id identifiant de l'objet recherché
-	 * @return T objet trouvé
-         * @throws SQLException objet non trouvé
-	 */
-        /**@Override
-	public Session read(int id)throws SQLException{
-            return null;
-        }**/
-	
-	/**
-	 * Permet de créer une entrée dans la base de données
-	 * par rapport à un objet
-	 * @param obj objet à créer
-         * @return T objet créé
-         * @throws SQLException exception de création
-	 */
-        /**@Override
-	public Session create(Session obj) throws SQLException{
-            return null;
-        }**/
-	
-	/**
-	 * Permet de mettre à jour les données d'une entrée dans la base 
-	 * @param obj objet à mettre à jour
-         * @throws SQLException exception  mise à jour
-         * @return T objet mis à jour
-	 */
-        /**@Override
-	public Session update(Session obj)throws SQLException{
-            return null;
-        }**/
-	
-	/**
-	 * Permet la suppression d'une entrée de la base
-	 * @param obj objet à effacer
-         * @throws SQLException exception d'effacement
-	 */
-        /**@Override
-	public void delete(Session obj) throws SQLException{
-        }**/
-
+     * public SessionDate dern_com(Session obj) throws SQLException{ String req
+     * = "select derniere_com from CLIDATE where idsession = ?";
+     * try(PreparedStatement pstm = dbConnect.prepareStatement(req)){
+     * pstm.setInt(1,obj.getIdsession()); try(ResultSet rs =
+     * pstm.executeQuery()){ if(rs.next()){ SessionDate dt =
+     * rs.getDate(1).toSessionDate(); return dt; } else throw new
+     * SQLException("aucune commande enregistrée pour ce session"); } } }
+    *
+     */
+    /**
+     * Permet de récupérer un objet via son ID
+     *
+     * @param id identifiant de l'objet recherché
+     * @return T objet trouvé
+     * @throws SQLException objet non trouvé
+     */
+    /**
+     * @Override public Session read(int id)throws SQLException{ return null;
+        }*
+     */
+    /**
+     * Permet de créer une entrée dans la base de données par rapport à un objet
+     *
+     * @param obj objet à créer
+     * @return T objet créé
+     * @throws SQLException exception de création
+     */
+    /**
+     * @Override public Session create(Session obj) throws SQLException{ return
+     * null;
+        }*
+     */
+    /**
+     * Permet de mettre à jour les données d'une entrée dans la base
+     *
+     * @param obj objet à mettre à jour
+     * @throws SQLException exception mise à jour
+     * @return T objet mis à jour
+     */
+    /**
+     * @Override public Session update(Session obj)throws SQLException{ return
+     * null;
+        }*
+     */
+    /**
+     * Permet la suppression d'une entrée de la base
+     *
+     * @param obj objet à effacer
+     * @throws SQLException exception d'effacement
+     */
+    /**
+     * @Override public void delete(Session obj) throws SQLException{
+        }*
+     */
 }

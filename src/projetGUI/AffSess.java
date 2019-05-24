@@ -33,7 +33,7 @@ public class AffSess extends javax.swing.JPanel {
         dft1.addColumn("Date début");
         dft1.addColumn("Date fin");
         dft1.addColumn("Matière");
-        dft1.addColumn("Session");
+        dft1.addColumn("Local");
         dft1.addColumn("Inscrits");
         dft1.addColumn("Durée (h)");
         tbl_rech.setModel(dft1);
@@ -126,7 +126,6 @@ public class AffSess extends javax.swing.JPanel {
         try {
             if (!textSess.getText().isEmpty()) {
                 String sess = textSess.getText();
-                System.out.println(sess);
                 List<Session> session = sessionDAO.rechNom(sess);
                 
                 int nr = dft1.getRowCount();
@@ -146,7 +145,6 @@ public class AffSess extends javax.swing.JPanel {
                     v.add(l1.getSigle());
                     v.add(l1.getNbreinscrits());
                     v.add(l1.getHeures());
-                    System.out.println(session);
 
                     dft1.addRow(v);
 

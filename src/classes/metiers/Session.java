@@ -5,6 +5,8 @@
  */
 package classes.metiers;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author jeanl
@@ -19,12 +21,12 @@ public class Session {
     /**
      *
      */
-    protected String datedebut;
+    protected LocalDate datedebut;
 
     /**
      *
      */
-    protected String datefin;
+    protected LocalDate datefin;
 
     /**
      *
@@ -53,7 +55,7 @@ public class Session {
      * @param datefin
      * @param nbreinscrits
      */
-    public Session(int idsesscours, String datedebut, String datefin, int nbreinscrits) {
+    public Session(int idsesscours, LocalDate datedebut, LocalDate datefin, int nbreinscrits) {
         this.idsesscours = idsesscours;
         this.datedebut = datedebut;
         this.datefin = datefin;
@@ -72,7 +74,7 @@ public class Session {
      * @param nbreinscrits
      * @param heures
      */
-    public Session(int idsesscours, String nom, String prenom, String datedebut, String datefin, String matiere, String sigle, int nbreinscrits, int heures) {
+    public Session(int idsesscours, String nom, String prenom, LocalDate datedebut, LocalDate datefin, String matiere, String sigle, int nbreinscrits, int heures) {
         this.idsesscours = idsesscours;
         this.nom = nom;
         this.prenom = prenom;
@@ -206,7 +208,7 @@ public class Session {
      * @param idcours
      * @param idlocal
      */
-    public Session(int idsesscours, String datedebut, String datefin, int nbreinscrits, int idcours, int idlocal){
+    public Session(int idsesscours, LocalDate datedebut, LocalDate datefin, int nbreinscrits, int idcours, int idlocal){
         this.idsesscours = idsesscours;
         this.datedebut = datedebut;
         this.datefin = datefin;
@@ -226,7 +228,7 @@ public class Session {
      *
      * @return
      */
-    public String getDatedebut() {
+    public LocalDate getDatedebut() {
         return datedebut;
     }
 
@@ -234,7 +236,7 @@ public class Session {
      *
      * @return
      */
-    public String getDatefin() {
+    public LocalDate getDatefin() {
         return datefin;
     }
 
@@ -258,7 +260,7 @@ public class Session {
      *
      * @param datedebut
      */
-    public void setDatedebut(String datedebut) {
+    public void setDatedebut(LocalDate datedebut) {
         this.datedebut = datedebut;
     }
 
@@ -266,7 +268,7 @@ public class Session {
      *
      * @param datefin
      */
-    public void setDatefin(String datefin) {
+    public void setDatefin(LocalDate datefin) {
         this.datefin = datefin;
     }
 
