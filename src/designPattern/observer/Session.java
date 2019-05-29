@@ -7,6 +7,7 @@ package DesignPattern.observer;
 
 import classes.metiers.*;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -33,14 +34,14 @@ public class Session extends subject {
      *
      */
     protected int nbreinscrits;
-    
+
     /**
-     * 
+     *
      */
     private int idcours;
-    
+
     /**
-     * 
+     *
      */
     private int idlocal;
     private String nom;
@@ -94,6 +95,7 @@ public class Session extends subject {
      */
     public void setNom(String nom) {
         this.nom = nom;
+        notifyObservers();
     }
 
     /**
@@ -102,6 +104,7 @@ public class Session extends subject {
      */
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+        notifyObservers();
     }
 
     /**
@@ -110,6 +113,7 @@ public class Session extends subject {
      */
     public void setMatiere(String matiere) {
         this.matiere = matiere;
+        notifyObservers();
     }
 
     /**
@@ -127,6 +131,7 @@ public class Session extends subject {
      */
     public void setHeures(int heures) {
         this.heures = heures;
+        notifyObservers();
     }
 
     /**
@@ -210,7 +215,7 @@ public class Session extends subject {
      * @param idcours
      * @param idlocal
      */
-    public Session(int idsesscours, LocalDate datedebut, LocalDate datefin, int nbreinscrits, int idcours, int idlocal){
+    public Session(int idsesscours, LocalDate datedebut, LocalDate datefin, int nbreinscrits, int idcours, int idlocal) {
         this.idsesscours = idsesscours;
         this.datedebut = datedebut;
         this.datefin = datefin;
@@ -218,6 +223,7 @@ public class Session extends subject {
         this.idcours = idcours;
         this.idlocal = idlocal;
     }
+
     /**
      *
      * @return
@@ -266,6 +272,10 @@ public class Session extends subject {
         this.datedebut = datedebut;
     }
 
+    public List<observer> getMyObservers() {
+        return myObservers;
+    }
+
     /**
      *
      * @param datefin
@@ -280,12 +290,11 @@ public class Session extends subject {
      */
     public void setNbreinscrits(int nbreinscrits) {
         this.nbreinscrits = nbreinscrits;
+        notifyObservers();
     }
 
     @Override
     public String getNotification() {
-        return "nouveau sigle :"+sigle;
+        return "nouveau sigle :" + sigle;
     }
-    
-    
 }

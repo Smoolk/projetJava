@@ -29,6 +29,31 @@ public class Infos {
         this.idsesscours = idsesscours;
         this.idinfos = idinfos;
     }
+    
+    private Formateur f;
+    private Session s;
+
+    public Formateur getF() {
+        return f;
+    }
+
+    public Session getS() {
+        return s;
+    }
+
+    public void setF(Formateur f) {
+        this.f = f;
+    }
+
+    public void setS(Session s) {
+        this.s = s;
+    }
+    
+    public Infos(Formateur f, Session s){
+        this.f = f;
+        this.s = s;
+        //s.addObserver(f);
+    }
 
     public Infos(int idform){
         this.idform = idform;

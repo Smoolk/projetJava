@@ -7,9 +7,11 @@ package classes.DAO;
  * @version 1.0
  * @see Info
  */
+import classes.metiers.Formateur;
 import java.sql.*;
 import java.util.*;
 import classes.metiers.Infos;
+import classes.metiers.Session;
 
 public class InfoDAO extends DAO<Infos> {
 
@@ -27,9 +29,18 @@ public class InfoDAO extends DAO<Infos> {
         String req2 = "select idinfos from PROJ_INFOS where NH=? and idform=? and idsesscours=?";
         try (PreparedStatement pstm1 = dbConnect.prepareStatement(req1);
                 PreparedStatement pstm2 = dbConnect.prepareStatement(req2)) {
+            
             pstm1.setInt(1, obj.getNh());
             pstm1.setInt(2, obj.getIdform());
             pstm1.setInt(3, obj.getIdsesscours());
+            
+            
+            Formateur f = obj.getF();
+            Session s = obj.getS();
+            Infos i = new Infos(f, s);
+            
+            
+            
             int n = pstm1.executeUpdate();
             if (n == 0) {
                 throw new SQLException("erreur de creation info, aucune ligne créée");
